@@ -10,6 +10,7 @@ phases:
   build:
     commands:
       - echo build Docker image on `date`
+      - cd src
       - docker build -t myreactapp:latest .
       - docker tag myreactapp:latest 962804699607.dkr.ecr.us-west-2.amazonaws.com/keshav-ecr-repository:latest
   post_build:
@@ -17,3 +18,8 @@ phases:
       - echo build Docker image complete `date`
       - echo push latest Docker images to ECR...
       - docker push 962804699607.dkr.ecr.us-west-2.amazonaws.com/keshav-ecr-repository:latest
+      - echo Writing image definitions file...
+      - printf '[{"name":"myreactapp","imageUri":"962804699607.dkr.ecr.us-west-2.amazonaws.com/keshav-ecr-repository:latest"}]' > imagedefinitions.json
+artifacts:
+  files:
+    - imagedefinitions.json
