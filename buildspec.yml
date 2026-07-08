@@ -19,6 +19,6 @@ phases:
       - docker push 962804699607.dkr.ecr.us-west-2.amazonaws.com/keshav-ecr-repository:latest
       - echo Writing image definitions file...
       - printf '[{"name":"keshav-task-definition-capstone78","imageUri":"962804699607.dkr.ecr.us-west-2.amazonaws.com/keshav-ecr-repository:latest"}]' > imagedefinitions.json
-  artifacts:
-    files:
-      - imagedefinitions.json
+artifacts:
+  files:
+    - imagedefinitions.json
